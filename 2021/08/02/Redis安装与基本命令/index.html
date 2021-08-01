@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装123456789101112131415161718192021222324252627282930313233343536下载地址：http:&#x2F;&#x2F;redis.io&#x2F;download安装步骤：# 安装gccyum install gcc# 把下载好的redis‐5.0.3.tar.gz放在&#x2F;usr&#x2F;local文件夹下，并解压wget http:&#x2F;&#x2F;download.redis.io&#x2F;rele">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis安装与基本命令">
+<meta property="og:url" content="http://example.com/2021/08/02/Redis%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="BeckQlm">
+<meta property="og:description" content="安装123456789101112131415161718192021222324252627282930313233343536下载地址：http:&#x2F;&#x2F;redis.io&#x2F;download安装步骤：# 安装gccyum install gcc# 把下载好的redis‐5.0.3.tar.gz放在&#x2F;usr&#x2F;local文件夹下，并解压wget http:&#x2F;&#x2F;download.redis.io&#x2F;rele">
+<meta property="og:locale">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/CC2A9C9BDC324B03B2972DB6CF135B94?method=download&shareKey=c9f18750e5158872b0dccee0b903a073">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/9FC6FC14C6B34C7AAB86D22182A412BA?method=download&shareKey=f5c97926ee6f42e77ce290c3ac6c4a08">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/93A08888C0E7415F89D3FBDE671D88A6?method=download&shareKey=c954d1c190e7838bdadb176069fedd69">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/93A08888C0E7415F89D3FBDE671D88A6?method=download&shareKey=c954d1c190e7838bdadb176069fedd69">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F2207A08861340D49057B52B054490A4?method=download&shareKey=6098a2752c030ba41adcb8d88cdcfd0b">
+<meta property="article:published_time" content="2021-08-01T17:18:34.000Z">
+<meta property="article:modified_time" content="2021-08-01T17:39:13.232Z">
+<meta property="article:author" content="BeckQlm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/CC2A9C9BDC324B03B2972DB6CF135B94?method=download&shareKey=c9f18750e5158872b0dccee0b903a073">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/08/02/Redis安装与基本命令/"/>
+
+
+
+
+
+  <title>Redis安装与基本命令 | BeckQlm</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BeckQlm</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/02/Redis%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BeckQlm">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis安装与基本命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-02T01:18:34+08:00">
+                2021-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">下载地址：http://redis.io/download</span><br><span class="line">安装步骤：</span><br><span class="line"># 安装gcc</span><br><span class="line">yum install gcc</span><br><span class="line"></span><br><span class="line"># 把下载好的redis‐5.0.3.tar.gz放在/usr/local文件夹下，并解压</span><br><span class="line">wget http://download.redis.io/releases/redis‐5.0.3.tar.gz</span><br><span class="line">tar xzf redis‐5.0.3.tar.gz</span><br><span class="line">cd redis‐5.0.3</span><br><span class="line"></span><br><span class="line"> # 进入到解压好的redis‐5.0.3目录下，进行编译与安装</span><br><span class="line"> make</span><br><span class="line"></span><br><span class="line"> # 修改配置</span><br><span class="line"> daemonize yes #后台启动</span><br><span class="line"> protected‐mode no #关闭保护模式，开启的话，只有本机才可以访问redis</span><br><span class="line"> # 需要注释掉bind</span><br><span class="line"> #bind 127.0.0.1（bind绑定的是自己机器网卡的ip，如果有多块网卡可以配多个ip，表允许客户</span><br><span class="line">通过机器的哪些网卡ip去访问，内网一般可以不配置bind，注释掉即可）</span><br><span class="line"></span><br><span class="line"> # 启动服务</span><br><span class="line"> src/redis‐server redis.conf</span><br><span class="line"></span><br><span class="line"> # 验证启动是否成功</span><br><span class="line"> ps ‐ef | grep redis</span><br><span class="line"></span><br><span class="line"> # 进入redis客户端</span><br><span class="line"> src/redis‐cli</span><br><span class="line"></span><br><span class="line"> # 退出客户端</span><br><span class="line"> quit</span><br><span class="line"></span><br><span class="line"> # 退出redis服务：</span><br><span class="line"> （1）pkill redis‐server</span><br><span class="line"> （2）kill 进程号</span><br><span class="line"> （3）src/redis‐cli shutdown</span><br></pre></td></tr></table></figure>
+<h2 id="Redis的单线程和高性能"><a href="#Redis的单线程和高性能" class="headerlink" title="Redis的单线程和高性能"></a>Redis的单线程和高性能</h2><h3 id="Redis是单线程吗？"><a href="#Redis是单线程吗？" class="headerlink" title="Redis是单线程吗？"></a>Redis是单线程吗？</h3><p>Redis 的单线程主要是指 Redis 的网络 IO 和键值对读写是由一个线程来完成的，这也是 Redis 对外提供键值存储服务的主要流程。但 Redis 的其他功能，比如持久化、异步删除、集群数据同步等，其实是由额外的线程执行的。</p>
+<h3 id="Redis-单线程为什么还能这么快？"><a href="#Redis-单线程为什么还能这么快？" class="headerlink" title="Redis 单线程为什么还能这么快？"></a>Redis 单线程为什么还能这么快？</h3><p>因为它所有的数据都在<strong>内存</strong>中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性能损耗问题。正因为 Redis 是单线程，所以要小心使用 Redis 指令，对于那些耗时的指令(比如keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。</p>
+<h3 id="Redis-单线程如何处理那么多的并发客户端连接？"><a href="#Redis-单线程如何处理那么多的并发客户端连接？" class="headerlink" title="Redis 单线程如何处理那么多的并发客户端连接？"></a>Redis 单线程如何处理那么多的并发客户端连接？</h3><p>Redis的<strong>IO多路复用</strong>：redis利用epoll来实现IO多路复用，将连接信息和事件放到队列中，依次放到文件事件分派器，事件分派器将事件分发给事件处理器。<br><img src="https://note.youdao.com/yws/api/personal/file/CC2A9C9BDC324B03B2972DB6CF135B94?method=download&shareKey=c9f18750e5158872b0dccee0b903a073" alt="image"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看redis支持的最大连接数，在redis.conf文件中可修改，# maxclients 10000</span><br><span class="line"> 127.0.0.1:6379&gt; CONFIG GET maxclients</span><br><span class="line">     ##1) &quot;maxclients&quot;</span><br><span class="line">     ##2) &quot;10000&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="其他高级命令"><a href="#其他高级命令" class="headerlink" title="其他高级命令"></a>其他高级命令</h2><h3 id="keys：全量遍历键"><a href="#keys：全量遍历键" class="headerlink" title="keys：全量遍历键:"></a>keys：全量遍历键:</h3><p>用来列出所有满足特定正则字符串规则的key，当redis数据量比较大时，性能比较差，要避免使用<br><img src="https://note.youdao.com/yws/api/personal/file/9FC6FC14C6B34C7AAB86D22182A412BA?method=download&shareKey=f5c97926ee6f42e77ce290c3ac6c4a08" alt="image"></p>
+<h3 id="scan：渐进式遍历键"><a href="#scan：渐进式遍历键" class="headerlink" title="scan：渐进式遍历键"></a>scan：渐进式遍历键</h3><p>SCAN cursor [MATCH pattern] [COUNT count]</p>
+<p>scan 参数提供了三个参数，第一个是 cursor 整数值(hash桶的索引值)，第二个是 key 的正则模式，第三个是一次遍历的key的数量(参考值，底层遍历的数量不一定)，并不是符合条件的结果数量。第一次遍历时，cursor 值为 0，然后将返回结果中第一个整数值作为下一次遍历的 cursor。一直遍历到返回的 cursor 值为 0 时结束。</p>
+<p>注意：但是scan并非完美无瑕， 如果在scan的过程中如果有键的变化（增加、 删除、 修改） ，那么遍历效果可能会碰到如下问题： 新增的键可能没有遍历到， 遍历出了重复的键等情况， 也就是说scan并不能保证完整的遍历出来所有的键， 这些是我们在开发时需要考虑的。<br><img src="https://note.youdao.com/yws/api/personal/file/93A08888C0E7415F89D3FBDE671D88A6?method=download&shareKey=c954d1c190e7838bdadb176069fedd69" alt="image"><br><img src="https://note.youdao.com/yws/api/personal/file/93A08888C0E7415F89D3FBDE671D88A6?method=download&shareKey=c954d1c190e7838bdadb176069fedd69" alt="image"></p>
+<h3 id="Info：查看redis服务运行信息"><a href="#Info：查看redis服务运行信息" class="headerlink" title="Info：查看redis服务运行信息"></a>Info：查看redis服务运行信息</h3><p>分为 9 大块，每个块都有非常多的参数，这 9 个块分别是:</p>
+<p>Server 服务器运行的环境参数<br>Clients 客户端相关信息<br>Memory 服务器运行内存统计数据<br>Persistence 持久化信息<br>Stats 通用统计数据<br>Replication 主从复制相关信息<br>CPU CPU 使用情况<br>Cluster 集群信息<br>KeySpace 键值对统计数量信息<br><img src="https://note.youdao.com/yws/api/personal/file/F2207A08861340D49057B52B054490A4?method=download&shareKey=6098a2752c030ba41adcb8d88cdcfd0b" alt="image"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">connected_clients:2 # 正在连接的客户端数量</span><br><span class="line"></span><br><span class="line">instantaneous_ops_per_sec:789 # 每秒执行多少次指令</span><br><span class="line"></span><br><span class="line">used_memory:929864 # Redis分配的内存总量(byte)，包含redis进程内部的开销和数占用的内</span><br><span class="line"></span><br><span class="line">used_memory_human:908.07K # Redis分配的内存总量(Kb，human会展示出单位)</span><br><span class="line">used_memory_rss_human:2.28M # 向操作系统申请的内存大小(Mb)（这个值一般是大于ed_memor</span><br><span class="line">的，因为Redis的内存分配策略会产生内存碎片）</span><br><span class="line">used_memory_peak:929864 # redis的内存消耗峰值(byte)</span><br><span class="line">used_memory_peak_human:908.07K # redis的内存消耗峰值(KB)</span><br><span class="line"></span><br><span class="line"> maxmemory:0 # 配置中设置的最大可使用内存值(byte),默认0,不限制</span><br><span class="line"> maxmemory_human:0B # 配置中设置的最大可使用内存值</span><br><span class="line"> maxmemory_policy:noeviction # 当达到maxmemory时的淘汰策略</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/08/01/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/08/02/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E3%80%81%E4%B8%BB%E4%BB%8E%E4%B8%8E%E5%93%A8%E5%85%B5%E6%9E%B6%E6%9E%84%E8%AF%A6%E8%A7%A3/" rel="prev" title="Redis持久化、主从与哨兵架构详解">
+                Redis持久化、主从与哨兵架构详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%9A%84%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%AB%98%E6%80%A7%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">Redis的单线程和高性能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%90%97%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">Redis是单线程吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%83%BD%E8%BF%99%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">Redis 单线程为什么还能这么快？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E9%82%A3%E4%B9%88%E5%A4%9A%E7%9A%84%E5%B9%B6%E5%8F%91%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">Redis 单线程如何处理那么多的并发客户端连接？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%AB%98%E7%BA%A7%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">其他高级命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keys%EF%BC%9A%E5%85%A8%E9%87%8F%E9%81%8D%E5%8E%86%E9%94%AE"><span class="nav-number">3.1.</span> <span class="nav-text">keys：全量遍历键:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scan%EF%BC%9A%E6%B8%90%E8%BF%9B%E5%BC%8F%E9%81%8D%E5%8E%86%E9%94%AE"><span class="nav-number">3.2.</span> <span class="nav-text">scan：渐进式遍历键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Info%EF%BC%9A%E6%9F%A5%E7%9C%8Bredis%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.</span> <span class="nav-text">Info：查看redis服务运行信息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BeckQlm</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
